@@ -16,7 +16,7 @@ const SIDEBAR_COLLAPSED = 64;
 const { isOpen }:ContextType =useContext(AppContext);
 
   return (
- <div className="w-full h-full overflow-auto">
+ <div className="d-flex w-full h-full overflow-auto">
     <TopBar/>
     <div className="flex flex-grow h-full  overflow-auto">
         <aside>

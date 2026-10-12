@@ -1,15 +1,20 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback ,useContext} from "react";
+import AppContext,{ContextType} from "@/context/AppContext";
+import BtnClosed from "@/components/common/buttons/btnClosed";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { HiChevronLeft } from "react-icons/hi2";
 import { menuItems, type MenuItem } from "./menuService";  
-
+import { Box } from "@mui/material";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 export default function SideBarItem() {
   const [openDropdowns, setOpenDropdowns] = useState<Record<number, boolean>>({});
   const pathname = usePathname();
 
+  const{setIsOpen,isOpen}:ContextType=useContext(AppContext);;
+  
   const toggleDropdown = useCallback((index: number) => {
     setOpenDropdowns((prev) => ({
       ...prev,
@@ -25,9 +30,25 @@ export default function SideBarItem() {
       ),
     [pathname]
   );
+  const isCollapsed = !isOpen;
 
   return (
     <div className="space-y-3 text-gray-600 font-bold overflow-x-hidden ">
+    <Box className="flex justify-between items-center mx-2">
+      <div className="icon flex items-center space-x-4">
+          <span className="text-md font-semibold bg-gradient-to-r 
+          from-[#dc2626] to-[#FF894C] bg-clip-text text-transparent mt-3">
+           ADMIN
+        </span>
+        <MdOutlineAdminPanelSettings className="text-2xl text-[#dc2626]"/>
+    </div>
+      <div className="close block  md:hidden">
+          <BtnClosed onClose={() => setIsOpen(false)} />
+      </div> 
+    </Box>
+      
+     <span className="block h-[1px] w-full bg-gray-400"></span>
+
       {menuItems.map((item, index) => {   
         const isActive = isMenuItemActive(item);
         const isOpen =
@@ -39,6 +60,7 @@ export default function SideBarItem() {
 
         return (
           <div key={index}>
+            
             <Link
               href={item.href}
               onClick={(e) => {

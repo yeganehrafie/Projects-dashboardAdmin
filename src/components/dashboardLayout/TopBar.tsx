@@ -13,7 +13,7 @@ const TOPBAR_HEIGHT = 50;
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
 export default function TopBar() {
-  const {setIsOpen }: ContextType = useContext(AppContext);
+  const {setIsOpen ,isOpen}: ContextType = useContext(AppContext);
 
  const handleToggleSidebar = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,13 +36,14 @@ export default function TopBar() {
       sx={{
         top: 0,
         left: 0,
-        right: 0,
+        right: { xs: 0, md: isOpen ? `240px` : "64px" },
+        width: "auto", 
         height: TOPBAR_HEIGHT,
         backgroundColor: "var(--form-bg)",
         color: "text.primary",
         borderBottom: "1px solid var(--form-border)",
         boxShadow: "var(--topbar-shadow)",
-        zIndex: (theme) => theme.zIndex.drawer + 1,
+        zIndex: 10,
       }}
     >
       <Toolbar

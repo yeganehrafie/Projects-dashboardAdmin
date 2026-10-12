@@ -31,6 +31,8 @@
   --glass-text: #1f2937;
   --form-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --form-border: transparent;
+  --form-border-input: 1px solid rgba(169, 22, 22, 0.1);
+  --form-border-color: rgba(105, 105, 105, 0.1);
   --text-user: var(--text-dark);
   --border-user: var(--text-user);
   --text-notif: var(--text-dark);
@@ -52,6 +54,7 @@
   --color-porple: #7c76dd;
   --text: #ced2dc;
   --text_gray: #b5b6b9;
+  --text-dark: #2d2d2d;
   --text_gray_dark: var(--text_gray);
   --text-focus: #7D8DF6;
   --notif-icon: var(--text);
@@ -71,6 +74,8 @@
   --glass-text: #ededed;
   --form-shadow: 0 4px 20px rgba(71, 70, 70, 0.4);
   --form-border: 1px solid rgba(255, 255, 255, 0.1);
+  --form-border-input: 1px solid rgba(169, 22, 22, 0.1);
+  --form-border-color: rgba(169, 22, 22, 0.1);
   --text-user: var(--text);
   --bg-dropdown: var(--card);
   --border-user: var(--text-user);

@@ -10,6 +10,7 @@ import SideBarItemIcon from "@/components/dashboardLayout/components/SideBarItem
 const MOBILE_BREAKPOINT = 768;
 const SIDEBAR_WIDTH = 240;
 const TOPBAR_HEIGHT = 50;
+const SIDEBAR_COLLAPSED=64;
 
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -52,23 +53,29 @@ export default function SideBar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobile, setIsOpen]);
 
+const width = isMobile
+    ? SIDEBAR_WIDTH
+    : isOpen
+    ? SIDEBAR_WIDTH
+    : SIDEBAR_COLLAPSED;
+
   return (
     <Drawer
       anchor="right"
-      open={isOpen}
+      open={isMobile ? isOpen : true} 
       onClose={() => setIsOpen(false)}
-      variant={isMobile ? "temporary" : "persistent"}
+      variant={isMobile ? "temporary" : "permanent"}  
       ModalProps={{ keepMounted: true }}
       sx={{
         "& .MuiDrawer-paper": {
-          width: isOpen ? SIDEBAR_WIDTH : isMobile ? SIDEBAR_WIDTH : 64,
-          top: `${TOPBAR_HEIGHT}px`,
-          height: `calc(100% - ${TOPBAR_HEIGHT}px)`,
+          width:width,
+          top: 0,                                  
+          height: "100%", 
           borderLeft: "1px solid var(--form-border)",
           overflowX: "hidden",
           transition: "width 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
           boxShadow: "var(--topbar-shadow)",
-          zIndex:"10",
+          zIndex:"20",
         },
         "& .MuiBackdrop-root": {
           top: `${TOPBAR_HEIGHT}px`,
@@ -85,7 +92,7 @@ export default function SideBar() {
         data-ignore-outside-click
         sx={{
           pt: 1,
-          overflowY: "auto",
+          overflowY: "none",
           height: "100%",
           display: "flex",
           flexDirection: "column",

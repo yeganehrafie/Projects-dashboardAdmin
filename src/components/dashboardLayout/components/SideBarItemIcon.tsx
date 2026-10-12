@@ -22,9 +22,7 @@ export default function SideBarItemIcon({ setSideBarOpenStatus }: Props) {
             title={item.label}
           >
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center "
+              className="flex items-center justify-center text-[var(--sideBarItemIcon)] hover:text-[var(--notif-icon-hover)] duration-300"
             >
               {item.iconElement}
             </motion.div>

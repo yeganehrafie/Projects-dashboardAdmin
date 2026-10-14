@@ -119,7 +119,7 @@ const width = isMobile
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2, ease: EASE }}
               >
-                <SideBarItemIcon setSideBarOpenStatus={setIsOpen} />
+                 <SideBarItemIcon setSideBarOpenStatus={setIsOpen} />
               </motion.div>
             )
           )}

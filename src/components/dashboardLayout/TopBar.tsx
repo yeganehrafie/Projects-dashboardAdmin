@@ -75,7 +75,7 @@ export default function TopBar() {
     <SearchBar />
   </div>
 
-  <div className="topbar_ltr flex items-center space-x-4">
+  <div className="topbar_ltr flex items-center space-x-2">
     <Notifications />
     <UserProfile />
     <BtnDarkMode />

@@ -38,8 +38,8 @@ export default function SearchBar() {
         aria-label="سرچ"
         aria-expanded={isOpen}
         sx={{
-          width: 40,
-          height: 40,
+          width: 34,
+          height: 34,
           border: "1px solid",
           borderColor: "[var(--form-border)]",
           color: "var(--notif-icon)",

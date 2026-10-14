@@ -1,7 +1,9 @@
 "use client";
-import Link from "next/link";
-import { motion } from "motion/react";
+import { Box } from "@mui/material";
 import { menuItems } from "./menuService";
+import DropdownItem from "./dropdownItem";
+import SingleLinkItem from "./SingleLinkItem";
+import ToolTip from "@/components/common/tooltip/ToolTip";
 
 interface Props {
   setSideBarOpenStatus: (status: boolean) => void;
@@ -9,26 +11,30 @@ interface Props {
 
 export default function SideBarItemIcon({ setSideBarOpenStatus }: Props) {
   return (
-    <ul className="space-y-2 text-center font-bold ">
-      {menuItems.map((item, index) => (
-        <li
-          key={index}
-          className="w-full"
-        >
-          <Link
-            href={item.href}
+    <Box className="flex flex-col items-center gap-1 pt-2">
+      {menuItems.map((item, index) => {
+        const hasChildren = item.children.length > 0;
+
+      if (!hasChildren) {
+          return (
+            <ToolTip key={index} title={item.label} placement="right-start">
+              <SingleLinkItem
+                item={item}
+                collapsed
+                onClick={() => setSideBarOpenStatus(true)}
+              />
+            </ToolTip>
+          );
+        }
+      return (
+          <DropdownItem
+            key={index}
+            item={item}
+            collapsed
             onClick={() => setSideBarOpenStatus(true)}
-            className="flex items-center justify-center p-3 cursor-pointer "
-            title={item.label}
-          >
-            <motion.div
-              className="flex items-center justify-center text-[var(--sideBarItemIcon)] hover:text-[var(--notif-icon-hover)] duration-300"
-            >
-              {item.iconElement}
-            </motion.div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+          />
+        );
+      })}
+    </Box>
   );
 }

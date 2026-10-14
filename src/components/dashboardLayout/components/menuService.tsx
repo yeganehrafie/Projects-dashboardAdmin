@@ -17,9 +17,19 @@ export const menuItems: MenuItem[] = [
     children: [],
   },
   {
-    label: "آیتم",
+    label: "منو اول",
     href: "",
     main: "item",
+    iconElement: <HiUsers size={18} />,
+    children: [
+      { label: "ایتم یک", href: "/items/list", main: "items-list", children: [] },
+      { label: "ایتم دو", href: "/items/add", main: "items-add", children: [] },
+    ],
+  },
+    {
+    label: "منو دوم",
+    href: "",
+    main: "item2",
     iconElement: <HiUsers size={18} />,
     children: [
       { label: "ایتم یک", href: "/items/list", main: "items-list", children: [] },

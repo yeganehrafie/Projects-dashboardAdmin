@@ -2,10 +2,11 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { cubicBezier } from "motion/react";
-import { HiChevronDown, HiUser, HiArrowRightOnRectangle } from "react-icons/hi2";
-import { FaUser } from "react-icons/fa";
+import { HiUser, HiArrowRightOnRectangle } from "react-icons/hi2";
+// import { FaUser } from "react-icons/fa";
 import AppContext,{ContextType} from "@/context/AppContext";
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -35,7 +36,7 @@ export default function UserProfile() {
 
   const handleLogout=()=>{
    localStorage.removeItem("user");
-   setUser("undefined");
+   setUser(undefined);
    router.push("/login");
 }
   //  بستن با کلیک بیرون
@@ -74,29 +75,22 @@ export default function UserProfile() {
     <div ref={dropdownRef} className="relative">
       <motion.button
         onClick={toggleDropdown}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         className="flex items-center gap-2 p-1 pl-2 rounded-lg  transition"
         aria-label="منوی کاربر"
         aria-expanded={isOpen}
       >
       <div className="icon_user user_profile">
-        <FaUser className="text-sm  rounded-full h-10 w-10 p-3 border border-gray-400"/>
+              <Image
+                 src="/assets/10.jpg"
+                 alt="تصویر پروفایل کاربر"
+                 width={36}
+                 height={36}
+                 className="rounded-full border-2 border-gray-500 object-cover"
+              />
+        {/* <FaUser className="text-sm  rounded-full h-10 w-10 p-3 border border-gray-400"/> */}
       </div>
-
-        <div className="hidden md:flex flex-col items-start user_profile">
-          <span className="text-sm font-bold">
-            {user?.userName||"yeganeh"}
-          </span>
-        </div>
-
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.25, ease: EASE }}
-          className="text-gray-400"
-        >
-          <HiChevronDown size={16} />
-        </motion.div>
       </motion.button>
 
       <AnimatePresence>

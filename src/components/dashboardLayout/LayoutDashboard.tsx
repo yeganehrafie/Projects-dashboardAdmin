@@ -18,10 +18,7 @@ const { isOpen }:ContextType =useContext(AppContext);
   return (
  <div className="d-flex w-full h-full overflow-auto">
     <TopBar/>
-    <div className="flex flex-grow h-full  overflow-auto">
-        <aside>
-          <SideBar /> 
-        </aside>
+    <SideBar /> 
     <main
         className="transition-[padding] duration-300"
         style={{
@@ -29,9 +26,11 @@ const { isOpen }:ContextType =useContext(AppContext);
           paddingRight: isOpen ? SIDEBAR_WIDTH : SIDEBAR_COLLAPSED,
         }}
       >
-        <div className="p-4">{children}</div>
+        <div className="flex justify-center items-start w-full">
+             <div className="py-4 w-[90%] max-w-full">{children}</div>
+        </div>
+        
       </main> 
-     </div>
 </div>
   );
 }
